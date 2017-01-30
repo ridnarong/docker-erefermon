@@ -16,7 +16,9 @@
 * `AMQP_SSL` เป็น การตั้งค่า ให้ใช้ SSL ในการเชื่อมต่อ message queue server ค่า default เป็น False ค่าที่รองรับคือ 0 สำหรับ False และ 1 สำหรับ True
 * `AMQP_USERNAME` เป็น username สำหรับ message queue server ค่า default เป็น 'guest'
 * `AMQP_PASSWORD` เป็น password สำหรับ message queue server ค่า default เป็น 'guest'
-* `MAKER_ENDPOINT` เป็น endpoint สำหรับบริการ maker ifttt โดยจะส่งข้อความผิดพลาดโดยฟิลด์ `value1`
+* `MAKER_ENDPOINT` เป็น endpoint สำหรับบริการ maker ifttt โดยจะส่งข้อความผิดพลาดโดยฟิลด์ `value1` ถ้าไม่ต้องการส่งผ่านไลน์ หรือไม่มีโปรแกรม curl ไม่ต้องใส่
+* `VPN_EXE` path ของโปรแกรม openvpn ค่า default เป็น openvpn โดยใน windows อาจจะที่อยู่ของ openvpn.exe
+* `OVPN_PATH` path ของไฟล์ ovpn ค่า default เป็น connect.ovpn
 
 # Volume
 ---

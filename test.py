@@ -9,7 +9,7 @@ from subprocess import call
 amqp_host = os.environ.get('AMQP_VPN_HOST', 'localhost')
 ovpn_path = os.environ.get('OVPN_PATH', 'connect.ovpn')
 vpn_exe = os.environ.get('VPN_EXE', 'openvpn')
-openvpn_exit = call(["openvpn", "--daemon", "--config", ovpn_path])
+openvpn_exit = call([vpn_exe, "--daemon", "--config", ovpn_path])
 endpoint = os.environ.get('MAKER_ENDPOINT', None)
 if openvpn_exit == 0:
     time.sleep(60)
