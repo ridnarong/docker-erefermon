@@ -6,26 +6,26 @@ import pika
 import json
 from subprocess import call
 
-# amqp_host = os.environ.get('AMQP_VPN_HOST', 'localhost')
-# ovpn_path = os.environ.get('OVPN_PATH', 'connect.ovpn')
-# vpn_exe = os.environ.get('VPN_EXE', 'openvpn')
-# openvpn_exit = call([vpn_exe, "--daemon", "--config", ovpn_path])
-# endpoint = os.environ.get('MAKER_ENDPOINT', None)
-# if openvpn_exit == 0:
-#     time.sleep(60)
-# else:
-#     if endpoint:
-#         call(['curl', '-X', 'POST', '-H', 'Content-Type: application/json', '-d', '{"value1": "OpenVPN error"}', endpoint])
-#     print("OpenVPN error")
+amqp_host = os.environ.get('AMQP_VPN_HOST', 'localhost')
+ovpn_path = os.environ.get('OVPN_PATH', 'connect.ovpn')
+vpn_exe = os.environ.get('VPN_EXE', 'openvpn')
+openvpn_exit = call([vpn_exe, "--daemon", "--config", ovpn_path])
+endpoint = os.environ.get('MAKER_ENDPOINT', None)
+if openvpn_exit == 0:
+    time.sleep(60)
+else:
+    if endpoint:
+        call(['curl', '-X', 'POST', '-H', 'Content-Type: application/json', '-d', '{"value1": "OpenVPN error"}', endpoint])
+    print("OpenVPN error")
 
-# ping_exit = call(["ping", "-c", "3", amqp_host])
+ping_exit = call(["ping", "-c", "3", amqp_host])
 
-# if ping_exit != 0:
-#     amqp_host = os.environ.get('AMQP_PUBLIC_HOST', 'localhost')
-#     if endpoint:
-#         call(['curl', '-X', 'POST', '-H', 'Content-Type: application/json', '-d', '{"value1":"VPN network is not ready"}', endpoint])
-#     print("VPN network is not ready")
-amqp_host = os.environ.get('AMQP_PUBLIC_HOST', 'localhost')
+if ping_exit != 0:
+    amqp_host = os.environ.get('AMQP_PUBLIC_HOST', 'localhost')
+    if endpoint:
+        call(['curl', '-X', 'POST', '-H', 'Content-Type: application/json', '-d', '{"value1":"VPN network is not ready"}', endpoint])
+    print("VPN network is not ready")
+    amqp_host = os.environ.get('AMQP_PUBLIC_HOST', 'localhost')
 
 try:
     credit = pika.credentials.PlainCredentials(os.environ.get('AMQP_USERNAME', 'guest'),
